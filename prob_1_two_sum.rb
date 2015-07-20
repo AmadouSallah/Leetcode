@@ -67,6 +67,27 @@ def merge(left_array, right_array)
 end
 ################ End of merge sort #####
 
+# SOLUTION 3 - 0(n) running time and 0(n) space complexities
+def two_sum_3(nums, target)
+  len = nums.length
+  hash = {}
+
+  for i in (0...len)
+    elt = nums[i]
+    diff = target - elt
+    # check to see if diff is in the hash; if so we found 2 numbers that add up to sum, that is diff and elt
+    if hash[diff]
+      index1 = nums.index(diff)
+      puts "index1=#{index1+1}, index2=#{i+1}"
+      return
+    else
+      hash[elt] = 1 # add the key elt to the hash
+    end
+  end
+end
+
+
+
 # TEST DRIVE
 
 puts "Testing Solution 1 - 0(n^2) running time and 0(1) space:"
@@ -77,4 +98,9 @@ puts "\n"
 puts "Testing Solution 2 - 0(nlogn) running time and 0(1) space:"
 two_sum_2([2, 7, 11, 15], 9)
 two_sum_2([1, 4, 45, 6, 10, 8], 16)
+puts "\n"
+
+puts "Testing Solution 3 - 0(n) running time and 0(n) space:"
+two_sum_3([2, 7, 11, 15], 9)
+two_sum_3([1, 4, 45, 6, 10, 8], 16)
 puts "\n"
