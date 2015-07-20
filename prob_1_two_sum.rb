@@ -22,7 +22,7 @@ def two_sum(nums, target)
 
 end
 
-# SOLUTION 2: 0(n) running time and 0(1) space complexities
+# SOLUTION 2: 0(nlogn) running time and 0(1) space complexities
 def two_sum_2(nums, target)
   sorted_nums = merge_sort(nums)
   i, j = 0, sorted_nums.length-1
