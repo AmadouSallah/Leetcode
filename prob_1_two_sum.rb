@@ -22,9 +22,59 @@ def two_sum(nums, target)
 
 end
 
+# SOLUTION 2: 0(n) running time and 0(1) space complexities
+def two_sum_2(nums, target)
+  sorted_nums = merge_sort(nums)
+  i, j = 0, sorted_nums.length-1
+  while i < j
+    sum = sorted_nums[i] + sorted_nums[j]
+    if sum == target
+      index1 = nums.index(sorted_nums[i])
+      index2 = nums.index(sorted_nums[j])
+      puts "index1=#{index1+1}, index2=#{index2+1}"
+      return
+    elsif sum < target
+      i += 1
+    else
+      j -= 1
+    end
+  end
+end
+
+# Writing the merge_sort function - 0(n longn) running time
+def merge_sort(nums)
+  len = nums.length
+  return nums if len < 2
+  mid_index = len / 2
+
+  left_sorted = merge_sort(nums[0...mid_index])
+  right_sorted = merge_sort(nums[mid_index...len])
+  merge(left_sorted, right_sorted)
+end
+
+def merge(left_array, right_array)
+  result = []
+
+  while left_array.length > 0 && right_array.length > 0
+    if left_array[0] < right_array[0]
+      result << left_array.shift
+    else
+      result << right_array.shift
+    end
+  end
+
+  result += left_array + right_array
+end
+################ End of merge sort #####
+
 # TEST DRIVE
 
 puts "Testing Solution 1 - 0(n^2) running time and 0(1) space:"
 two_sum([2, 7, 11, 15], 9)
 two_sum([1, 4, 45, 6, 10, 8], 16)
+puts "\n"
+
+puts "Testing Solution 2 - 0(nlogn) running time and 0(1) space:"
+two_sum_2([2, 7, 11, 15], 9)
+two_sum_2([1, 4, 45, 6, 10, 8], 16)
 puts "\n"
