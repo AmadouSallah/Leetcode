@@ -15,6 +15,7 @@ def longest_substring_without_repeating_characters(string)
       max = (max > diff) ? max : diff
       j += 1
     else # the current character is repeating
+      hash[char] = nil # remove it from hash
       diff = j-i
       max = (max > diff) ? max : diff
       i += 1
@@ -28,3 +29,4 @@ p longest_substring_without_repeating_characters("bbbbb") == 1
 p longest_substring_without_repeating_characters("abc") == 3
 p longest_substring_without_repeating_characters("a") == 1
 p longest_substring_without_repeating_characters("") == 0
+p longest_substring_without_repeating_characters("abbay") == 3
